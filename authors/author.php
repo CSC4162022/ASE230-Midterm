@@ -3,7 +3,6 @@
 
 class Author {
 
-
     public $fileName;
     public $authorList;
     public $authorFirst;

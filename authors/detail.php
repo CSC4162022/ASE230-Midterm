@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../csv_util.php";
+require "../auth/auth.php";
 
 $utilities = new Utilities();
 //get the author and quotes
@@ -27,7 +28,7 @@ function printAuthorQuotes($quotes) {
     <body>
 <?php
 
-if (isset($_SESSION['logged'])) {
+if (is_logged()) {
 
     ?>
         <div class="container text-center">
@@ -56,6 +57,9 @@ if (isset($_SESSION['logged'])) {
         </div>
     </div>
     <?php
+}
+else {
+    header('Location: ../index.php');
 }
 ?>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

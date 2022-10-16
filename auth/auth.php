@@ -1,6 +1,5 @@
 <?php
 
-
 // add parameters
 function signup($email, $password, $usersFile)
 {
@@ -59,7 +58,7 @@ function signout(){
 }
 
 function is_logged(){
-    if ($_SESSION['logged']==true) {
+    if (isset($_SESSION['logged']) && $_SESSION['logged']==true) {
        return true;
     }
 	return false;

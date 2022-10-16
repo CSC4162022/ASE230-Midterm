@@ -1,6 +1,7 @@
 <?php
 session_start();
-require "csv_util.php";
+require "./csv_util.php";
+require "./auth/auth.php";
 
 $utilities = new Utilities();
 
@@ -44,7 +45,7 @@ function printAuthorsQuotes($authors, $quotes) {
             <div class="form-outline mb-4">
             <?php
             printAuthorsQuotes($utilities->getArrayFromCsv('./authors.csv'),$utilities->getArrayFromCsv('./quotes.csv'));
-            if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
+            if (is_logged() == true) {
                 ?>
                 <p><?= $_SESSION['email'] . ' is logged in' ?></p>
                 <p><a href="quotes/create.php?"><?= 'Create Quote' ?></a></p>
@@ -60,10 +61,11 @@ function printAuthorsQuotes($authors, $quotes) {
                 }
                 if (isset($_GET['deleteQuoteDeclined']) || isset($_GET['deleteAuthorDeclined'])) {
                     ?>
-                    <h6><?= 'Declined.' ?></h6>
+                    <h6><?= 'Operation declined.' ?></h6>
                     <?php
                 }
                 ?>
+                <p><strong><?='Please sign in to view author and quote details'?></strong></p>
                 <p><a href="auth/signin.php?"><?= 'Sign In' ?></a></p>
                 <p><a href="auth/signup.php?"><?= 'Sign Up' ?></a></p>
                 <?php

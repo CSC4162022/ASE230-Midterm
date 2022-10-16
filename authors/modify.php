@@ -29,6 +29,9 @@ else if (isset($_POST['authorFirstName'])
         header('Location: ../modify.php');
     }
 }
+else {
+    header('Location: ../index.php');
+}
 ?>
 <?php
 function displayModifyAuthor($authorIndex, $authors) {

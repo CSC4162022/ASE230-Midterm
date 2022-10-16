@@ -1,8 +1,10 @@
 <?php
 session_start();
 require "../csv_util.php";
+require "../auth/auth.php";
 
 $utitlies = new Utilities();
+if (is_logged()) {
 
 ?>
 <html lang="en">
@@ -20,7 +22,7 @@ $utitlies = new Utilities();
     //get the author and quote
     $quotes = $utitlies->getArrayElementFromCsv('../quotes.csv', $_GET['index']);
     $author = $utitlies->getArrayElementFromCsv('../authors.csv', $_GET['index']);
-    if (isset($_SESSION['logged'])) {
+
         ?>
     <div class="container text-center mb-5">
         <form method="post" action="delete.php">
@@ -52,17 +54,7 @@ $utitlies = new Utilities();
         <?php
     }
     else {
-        ?>
-    <div class="container text-center mb-5">
-        <div class="row">
-            <form method="post" action="delete.php">
-                <h3><?= $quotes[$_GET['quote']] ?></h3>
-                <p><?php echo ' -' . $author[0]  . ' ' . $author[1] ?></p>
-                <a href="<?='../index.php'?>"><?='Back to index'?></a>
-            </form>
-        </div>
-    </div>
-    <?php
+        header('Location: ../index.php');
     }
     ?>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

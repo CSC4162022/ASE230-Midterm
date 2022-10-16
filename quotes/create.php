@@ -9,6 +9,9 @@ $quotes = $utilities->getArrayFromCsv('../quotes.csv');
 if (isset($_POST['selected_author_index']) && isset($_POST['record'])) {
     $utilities->addRecord('../quotes.csv', $_POST['selected_author_index'],  $_POST['record'], false);
 }
+else if (!is_logged()) {
+    header('Location: ../index.php');
+}
 
 ?>
 

@@ -136,9 +136,21 @@ class Utilities {
         return true;
     }
 
+    function userIsBanned($email)
+    {
+        $bannedUsersLine = fopen('../data/banned.csv', 'r');
+        while (false !== ($data = fgetcsv($bannedUsersLine))) {
+            if ($data[0] == $email) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //check if the file containing banned users exists, check if the email has been banned
     //check if the file containing users exists, check if the email is registered
     function verifyUser($usersFile, $bannedUsersFile, $email) {
+        $utilities = new Utilities();
         $emailMatch = false;
         if(file_exists($usersFile) && file_exists($bannedUsersFile)) {
 
@@ -148,7 +160,7 @@ class Utilities {
                     $emailMatch = true;
                 }
             }
-            if (userIsBanned($email) == true) {
+            if ($utilities->userIsBanned($email) == true) {
                 die('You are banned');
             }
             if ($emailMatch == true) {
@@ -236,22 +248,6 @@ class Utilities {
     function encryptPassword($password) {
         return password_hash($password, PASSWORD_DEFAULT);
     }
-
-    function userIsBanned($email)
-    {
-        $bannedUsersLine = fopen('../data/banned.csv', 'r');
-        while (false !== ($data = fgetcsv($bannedUsersLine))) {
-            if ($data[0] == $email) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
-
-
-
-
-
 
 ?>

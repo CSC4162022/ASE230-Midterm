@@ -5,7 +5,7 @@ require "../auth/auth.php";
 require "author.php";
 
 
-if (isset($_POST['author_index'])) {
+if (isset($_POST['author_index']) && is_logged()) {
 
     $utilities = new Utilities();
     $_SESSION['authorIndex']  = $_POST['author_index'];
