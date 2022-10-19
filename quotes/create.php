@@ -1,17 +1,21 @@
 <?php
 require '../csv_util.php';
+require '../auth/auth.php';
+
+session_start();
 
 $utilities = new Utilities();
 $authors = $utilities->getArrayFromCsv('../authors.csv');
 $quotes = $utilities->getArrayFromCsv('../quotes.csv');
 
+if (!is_logged()) {
+    header('Location: ../index.php');
+}
 
 if (isset($_POST['selected_author_index']) && isset($_POST['record'])) {
     $utilities->addRecord('../quotes.csv', $_POST['selected_author_index'],  $_POST['record'], false);
 }
-else if (!is_logged()) {
-    header('Location: ../index.php');
-}
+
 
 ?>
 

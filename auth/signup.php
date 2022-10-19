@@ -3,10 +3,12 @@ session_start();
 require "../csv_util.php";
 require "../auth/auth.php";
 
+$utilities = new Utilities();
 
 // use the following guidelines to create the function in auth.php
 // instead of using "die", return a message that can be printed in the HTML page
 if(count($_POST)>0){
+
 	// check if the fields are empty
 	if(!isset($_POST['email'])) {
         die('please enter your email');
@@ -20,7 +22,7 @@ if(count($_POST)>0){
         header('Location: ../index.php');
     }
     else {
-        header('Location: signup.php');
+        header('Location: signup.php?failedSignUp=true');
     }
 }
 
@@ -37,6 +39,13 @@ if(count($_POST)>0){
     <div class="container text-center">
         <form method="POST" action="signup.php">
             <div class="form-outline mb-4">
+                <?php
+                if (isset($_GET['failedSignUp'])) {
+                    ?>
+                    <h6><?= 'Failed to sign up.' ?></h6>
+                    <?php
+                }
+                ?>
                 <h6><?='Sign Up'?></h6>
                 <label for="email"><?='Email'?></label>
                 <input type="email" name="email" />

@@ -67,8 +67,8 @@ class Utilities {
             if ($i == $authorIndex) {
                 for ($j=0;$j<count($data);$j++) {
                     if ($j == $recordIndex) {
-                        $elem[] = $record;
-                        $data[$j] = $elem;
+                        //$elem[] = $record;
+                        $data[$j] = $record;
                         fputcsv($output, $data);
                     }
                 }
