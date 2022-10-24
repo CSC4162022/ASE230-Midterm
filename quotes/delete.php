@@ -13,15 +13,6 @@ if (isset($_POST['author_index']) && isset($_POST['quote_index']) && isset($_POS
 else if (isset($_POST['delete_confirm'])) {
     $confirm = $_POST['delete_confirm'];
     if($confirm == 'Yes') {
-        if(count($utilities->getArrayElementFromCsv('../quotes.csv', $_POST['authorIndex'])) == 1) {
-            ?>
-            <?php
-            echo '<script type="text/javascript">';
-            echo ' alert("That is the last quote by this author, what is an author without quotes?")';  //not showing an alert box.
-            echo '</script>';
-            ?>
-            <?php
-        }
         //delete quote using utility function
         $quote = $_POST['quote'];
         $i = $_POST['authorIndex'];
@@ -37,7 +28,6 @@ else if (isset($_POST['delete_confirm'])) {
 else {
     header('Location: ../index.php?prevOperationFailed=true');
 }
-
 
 //request confirmation and delete the quote
 function requestDeleteConfirmation($quote, $quoteIndex, $authorIndex, $author)

@@ -56,7 +56,7 @@ function printAuthorsQuotes($authors, $quotes) {
             else {
                 if (isset($_SESSION['newEnrolledUser'])) {
                     ?>
-                    <h6><?= 'Welcome new user, please sign in.' ?></h6>
+                    <h6><strong><?= 'Welcome new user, please sign in.' ?></strong></h6>
                     <?php
                 }
                 if (isset($_GET['deleteQuoteDeclined']) || isset($_GET['deleteAuthorDeclined'])) {
@@ -66,7 +66,7 @@ function printAuthorsQuotes($authors, $quotes) {
                 }
                 else if (isset($_GET['failedSignin'])) {
                     ?>
-                    <h6><?= 'Failed to sign in.' ?></h6>
+                    <h6><strong><?= 'Failed to sign in.' ?></strong></h6>
                     <?php
                 }
                 ?>
